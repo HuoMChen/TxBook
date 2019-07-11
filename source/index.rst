@@ -8,9 +8,17 @@ Welcome to TxBook's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    hello
+   api
+   mapfile
+   test
+
+API
+===
+.. automodule:: run
+   :members:
+
 
 Indices and tables
 ==================

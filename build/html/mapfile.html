@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>map文件分析 &mdash; TxBook 1.0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="TxBook 1.0.1 文档" href="index.html"/>
+        <link rel="next" title="Sphinx Quick Reference" href="test.html"/>
+        <link rel="prev" title="The TxBook API reference" href="api.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TxBook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hello.html">hello world</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The TxBook API reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">map文件分析</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#c">c语言存储区域</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#arm">ARM程序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mdk-map">mdk map文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Sphinx Quick Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TxBook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>map文件分析</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/mapfile.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="map">
+<h1>map文件分析<a class="headerlink" href="#map" title="永久链接至标题">¶</a></h1>
+<div class="section" id="c">
+<h2>c语言存储区域<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h2>
+<dl>
+<dt>1、代码段</dt><dd><p>程序语句</p>
+</dd>
+<dt>2、数据</dt><dd><p>已经初始化</p>
+<blockquote>
+<div><p>只读数据段(RO Data)</p>
+<p>已经初始化读写数据(RW Data)</p>
+<blockquote>
+<div><p>已初始化全局变量
+已经初始化的函数static</p>
+</div></blockquote>
+</div></blockquote>
+<p>未初始化</p>
+<blockquote>
+<div><p>未初始化数据段(.bss)</p>
+</div></blockquote>
+</dd>
+<dt>3、堆栈</dt><dd><p>堆(heaap):程序员malloc和release</p>
+<p>栈(statk):在函数内部由编译器自动分配和释放</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="arm">
+<h2>ARM程序<a class="headerlink" href="#arm" title="永久链接至标题">¶</a></h2>
+<dl>
+<dt>1、ARM程序的组成</dt><dd><p>RO段(text)、RW段和ZI段(未初始化的数据),这些称为静态存储
+ZI对应C语言的.bss</p>
+</dd>
+<dt>2、ROM拷贝到RAM</dt><dd><p>RW数据和ZI数据会</p>
+<p>Total RO  Size (Code + RO Data)               968004 ( 945.32kB)
+Total RW  Size (RW Data + ZI Data)            175320 ( 171.21kB)
+Total ROM Size (Code + RO Data + RW Data)     977676 ( 954.76kB)</p>
+</dd>
+</dl>
+<p>text和data段都在可执行文件中（在嵌入式系统里一般是固化在镜像文件中），由系统从可执行文件中加载；</p>
+<p>而bss段不在可执行文件中，由系统初始化</p>
+<p>Flash=Code + RO Data + RW Data;</p>
+<p>RAM= RW-data+ZI-data + 堆栈;</p>
+<p>五、程序中段的使用</p>
+<p>C语言中的全局区(静态区)，实际上对应着下述几个段：</p>
+<p>只读数据段:RO Data</p>
+<p>读写数据段：RW Data</p>
+<p>未初始化数据段：BSS Data</p>
+<p>在C语言的程序中，对变量的使用需要注意的问题</p>
+<p>1、在函数体中定义的变量通常是在栈上，不需要在程序中进行管理，由编译器处理。</p>
+<p>2、用malloc，calloc,realoc等分配分配内存的函数所分配的内存空间在堆上，程序必须保证在使用后使用后freee释放，否则会发生内存泄漏。</p>
+<p>3、所有函数体外定义的是全局变量，加了static修饰符后的变量不管在函数内部或者外部存放在全局区(静态区)。</p>
+<p>4、使用const定义的变量将放于程序的只读数据区。</p>
+</div>
+<div class="section" id="mdk-map">
+<h2>mdk map文件<a class="headerlink" href="#mdk-map" title="永久链接至标题">¶</a></h2>
+<p>通过仔细阅读.map文件，我们可以大致分为5个部分：</p>
+<p>列出不同函数的调用关系</p>
+<p>列出被MDK优化的冗余函数</p>
+<p>列出局部标签和全局标签</p>
+<p>列出映像文件的内存映射</p>
+<p>列出映像文件的组件大小</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="test.html" class="btn btn-neutral float-right" title="Sphinx Quick Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="api.html" class="btn btn-neutral" title="The TxBook API reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, RanBiron.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
