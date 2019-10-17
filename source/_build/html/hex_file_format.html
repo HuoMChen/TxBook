@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.HEX 文件 &mdash; TxBook 1.0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="TxBook 1.0.1 文档" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TxBook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="hello.html">hello world</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The TxBook API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapfile.html">map文件分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Sphinx Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="st06_designe_rule.html">ST06工程设计规范</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TxBook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>1.HEX 文件</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/hex_file_format.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hex">
+<h1>1.HEX 文件<a class="headerlink" href="#hex" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>1.1 用途<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>Intel HEX文件是一个ASCII文本文件，其文本行遵循Intel HEX文件格式。
+用于存储ROM或EEPROM的程序和数据。</p>
+</div>
+<div class="section" id="id2">
+<h2>1.2 格式<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>每一行为一个记录，每个记录分为五个字段，这些字段按以下格式排列。</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">:</span><span class="n">llaaaatt</span> <span class="p">[</span><span class="n">dd</span> <span class="p">...]</span> <span class="n">cc</span>
+</pre></div>
+</div>
+<p>相同字母表示同一字段，一个字母表示一个HEX。</p>
+<ul class="simple">
+<li><p><strong>:</strong> 表示每行的开始</p></li>
+<li><p><strong>ll</strong> 是记录长度字段，表示该记录的数据字节数</p></li>
+<li><p><strong>aaaa</strong> 是地址字段，表示记录中后续数据的起始地址。</p></li>
+<li><dl class="simple">
+<dt><strong>tt</strong> 是代表HEX记录类型的字段，可以是下列之一:</dt><dd><ul>
+<li><p>00-数据记录</p></li>
+<li><p>01-文件结束记录</p></li>
+<li><p>02-扩展段地址记录</p></li>
+<li><p>04-扩展线性地址记录</p></li>
+<li><p>05-起始线性地址记录（仅限MDK-ARM）</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>dd</strong> 是一个数据字段，表示一个字节的数据。一个记录可能有多个数据字节。记录中的数据字节数必须与 ll字段指定的数匹配 。</p></li>
+<li><p><strong>cc</strong> 是表示记录校验和的校验和字段。校验和是通过将记录模256中所有十六进制数字对的值相加并取两者的补码来计算的。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>1.3 实例<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="id4">
+<h2>1.3.1 数据记录<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>英特尔HEX文件由任意数量的以回车符和换行符终止的数据记录组成。数据记录如下：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">:</span><span class="mi">10246200464</span><span class="n">C5549442050524F46494C4500464C33</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>10是记录中的数据字节数。</p></li>
+<li><p>2462是要在内存中放置数据的地址。</p></li>
+<li><p>00是记录类型00（数据记录）。</p></li>
+<li><p>464C … 464C是数据。</p></li>
+<li><p>33是记录的校验和。</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>1.3.2 扩展线性地址记录<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>可以看出地址字段只有2个字节，最大只能表示64K的地址，如果要表示更大的地址该如何作？
+比如要把单片机的程序写入0x0800 8000,如下:</p>
+<p>首先用拓展线性地址记录来表示基地址0x0800 0000,线性地址记录中数据字段存放的是高16为地址(0800)，如下：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">:</span><span class="mf">020000040800F</span><span class="mi">2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>02 表示记录数据字节数。</p></li>
+<li><p>0000 对于拓展线性地址记录段，该直始终为0000</p></li>
+<li><p>04 表示拓展新地址记录</p></li>
+<li><p>0800 数据</p></li>
+<li><p>F2 校验和</p></li>
+</ul>
+<p>数据记录中的地址字段存放的低16位的地址(8000),如下
+:10800000E8E801206183000815EE0308018F0308EA</p>
+<ul class="simple">
+<li><p>10 表示该记录由16个数据</p></li>
+<li><p>8000 表示数据要存放在地址8000</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>1.3.3 起始线性地址记录<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>起始线性地址记录指定应用程序的起始地址。这些记录包含完整的线性32位地址。
+线性起始记录始终有四个数据字节，并显示如下：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">:</span><span class="mf">0400000508008189E5</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>04是记录中的数据字节数。</p></li>
+<li><p>0000是地址字段。对于起始线性地址记录，此字段始终为0000。</p></li>
+<li><p>05是记录类型05（起始线性地址记录）。</p></li>
+<li><p>0800 8189是应用程序的4字节线性起始地址。</p></li>
+<li><p>2A是记录的校验和,计算为01h + NOT（04h + 00h + 00h + 05h + 00h + 00h + 00h + CDh）</p></li>
+</ul>
+<p>0800 8189是main函数的入口地址</p>
+</div>
+<div class="section" id="eof">
+<h2>1.3.4 文件结束（EOF）记录<a class="headerlink" href="#eof" title="永久链接至标题">¶</a></h2>
+<p>英特尔HEX文件必须以文件结尾（EOF）记录结尾。该记录的记录类型字段中的值必须为01。
+EOF记录始终显示如下：</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="o">:</span><span class="mf">00000001FF</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>00是记录中的数据字节数。</p></li>
+<li><p>0000是要在内存中存储数据的地址。文件结束记录中的地址是没有意义的，将被忽略。典型的地址是0000h。</p></li>
+<li><p>01是记录类型01（文件结束记录）。</p></li>
+<li><p>FF是记录的校验和，计算为01h + NOT（00h + 00h + 00h + 01h）。</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, RanBiron.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
