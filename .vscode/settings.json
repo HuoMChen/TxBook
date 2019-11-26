@@ -1,3 +1,4 @@
 {
-    "restructuredtext.confPath": "${workspaceFolder}/source"
+  "editor.wordWrapColumn": 90,
+  "restructuredtext.confPath": "${workspaceFolder}/source"
 }

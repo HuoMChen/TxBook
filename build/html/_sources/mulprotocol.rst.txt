@@ -1,0 +1,391 @@
+==============
+高频头
+==============
+
+------------
+简介
+------------
+
+
+
+
+1.1 Serial mode
+-----------------
+
+1.1.1
+=========
+
+1.2 serial Protocol
+=====================
+
+比特率 100000
+
+1.2.1 Stream[0]
+---------------
+* 0x55	Sub_Protocol values are 0..31	Stream contains channels
+
+* 0x54	Sub_Protocol values are 32..63	Stream contains channels
+
+* 0x57	sub_protocol values are 0..31	Stream contains failsafe
+
+* 0x56	sub_protocol values are 32..63	Stream contains failsafe
+
+1.2.2 Stream[1]
+---------------
+
+sub_protocol is 0..31 (bits 0..4)
+
+
++--------+--------+---------+---------+---------+---------+--------+--------+
+| 7      |     6  |      5  |    4    |   3     |  2      |   1    | 0      |
++--------+--------+---------+---------+---------+---------+--------+--------+
+| BindBit| AutoBB |  RangC  |  sub_protocol                                 |
++--------+--------+---------+---------+---------+---------+--------+--------+
+
+* 位 7: 绑定标志位(BindBit)
+
+  * 0 No
+  * 1 Yes
+* 位 6: 自动绑定标志位(AutoBindBit)
+
+  * 0 No
+  * 1 Yes
+* 位 5 : (RangeCheck)
+
+  * 0 No
+  * 1 Yes
+* 位 4:0 : 协议序号(sub_protocol)
+
+  * 当Byte 0为0x54，该直加上32才为对应的协议序号
+
+
+1.2.3 Stream[2]
+
++--------+--------+---------+---------+---------+---------+--------+--------+
+| 7      |     6  |      5  |    4    |   3     |  2      |   1    | 0      |
++--------+--------+---------+---------+---------+---------+--------+--------+
+| PowerV |         Type               |   RxNum                             |
++--------+--------+---------+---------+---------+---------+--------+--------+
+
+
+* 位 7： Power value
+
+  * 0 : low
+  * 1 : hight
+
+- 位 6:4 : Type Value
+
+  - sub_protocol==Flysky
+
+    - 0 : flasky
+    - 1 : V9x9
+    - 2 : V6x6
+    - 3 : V912
+    - 4 : CX20
+
+  - sub_protocol==FRSKYX
+
+    - 0 : CH_16
+    - 1 : CH_8
+    - 2 : EU_16
+    - 3 :EU_8
+
+  - sub_protocol==FRSKYX_RX
+
+    - 0 : FCC
+    - 1 :	LBT
+
+  - sub_protocol==Hubsan
+
+    - 0 : H107
+    - 1 : H301
+    - 2 : H501
+
+  - sub_protocol==Hisky
+
+    - 0 : Hisky
+    - 1 : HK310
+
+  - sub_protocol==DSM
+
+    - 0 : DSM2_22
+    - 1 : DSM2_11
+    - 2 : DSMX_22
+    - 3 : DSMX_11
+    - 4 : DSM_AUTO
+
+  - sub_protocol==YD717
+
+    - 0 : YD717
+    - 1 : SKYWLKR
+    - 2 : SYMAX4
+    - 3 : XINXUN
+    - 4 : NIHUI
+
+  - sub_protocol==KN
+
+    - 0 : WLTOYS
+    - 1 : FEILUN
+
+  - sub_protocol--SYMAX
+
+    - 0 : SYMAX
+    - 1 : SYMAX5C
+
+  - sub_protocol==CX10
+
+    - 0 : CX10_GREEN
+    - 1 : CX10_BLUE
+    - 2 : DM007
+    - 3 : ----
+    - 4 : JC3015_1
+    - 5 : JC3015_2
+    - 6 : MK33041
+
+  - sub_protocol==Q2X2
+
+    - 0 : Q222
+    - 1 : Q242
+    - 3 : Q282
+
+  - sub_protocol==CG023
+
+    - 0 : CG023
+    - 1 : YD829
+
+  - sub_protocol==BAYANG
+
+    - 0 : BAYANG
+    - 1 : H8S3D
+    - 2 : X16_AH
+    - 3 : IRDRONE
+    - 4 : DHD_D4
+
+  - sub_protocol==MT99XX
+
+    - 0 : MT99
+    - 1 : H7
+    - 2 : YZ
+    - 3 : LS
+    - 4 : FY805
+
+  - sub_protocol==MJXQ
+
+    - 0 : WLH08
+    - 1 : X600
+    - 2 : X800
+    - 3 : H26D
+    - 4 : E010
+    - 5 : H26WH
+    - 6 : PHOENIX
+
+  - sub_protocol==HONTAI
+
+    - 0 : HONTAI
+    - 1 : JJRCX1
+    - 2 : X5C1
+    - 3 : FQ777_951
+
+  - sub_protocol==AFHDS2A
+
+    - 0 : PWM_IBUS
+    - 1 : PPM_IBUS
+    - 2 : PWM_SBUS
+    - 3 : PPM_SBUS
+
+  - sub_protocol==V2X2
+
+    - 0 : V2X2
+    - 1 : JXD506
+
+  - sub_protocol==FY326
+
+    - 0 : FY326
+    - 1 : FY319
+
+  - sub_protocol==WK2x01
+
+    - 0 : WK2801
+    - 1 : WK2401
+    - 2 : W6_5_1
+    - 3 : W6_6_1
+    - 4 : W6_HEL
+    - 5 : W6_HEL_I
+
+  - sub_protocol==Q303
+
+    - 0 : Q303
+    - 1 : CX35
+    - 2 : CX10D
+    - 3 : CX10WD
+
+  - sub_protocol==CABELL
+
+    - 0 : CABELL_V3
+    - 1 : CABELL_V3_TELEMETRY
+    - 6 : CABELL_SET_FAIL_SAFE
+    - 7 : CABELL_UNBIND
+
+  - sub_protocol==H8_3D
+
+    - 0 : H8_3D
+    - 1 : H20H
+    - 2 : H20MINI
+    - 3 : H30MINI
+
+  - sub_protocol==CORONA
+
+    - 0 : COR_V1
+    - 1 : COR_V2
+    - 2 : FD_V3
+
+  - sub_protocol==HITEC
+
+    - 0 : OPT_FW
+    - 1 : OPT_HUB
+    - 2 : MINIMA
+
+  - sub_protocol==SLT
+
+    - 0 : SLT_V1
+    - 1 : SLT_V2
+    - 2 : Q100
+    - 3 : Q200
+    - 4 : MR100		4
+
+  - sub_protocol==E01X
+
+    - 0 : E012
+    - 1 : E015
+    - 2 : E016H
+
+  - sub_protocol==GD00X
+
+    - 0 : GD_V1
+    - 1 : GD_V2
+
+  - sub_protocol==REDPINE
+
+    - 0 : RED_FAST
+    - 1 : RED_SLOW
+
+  - sub_protocol==TRAXXAS
+
+    - 0 : RX6519
+
+- 位 3:0 : RxNum
+
+
+
+1.2.3 : Stream[3]
+-----------------
+
+option protocol,values is -128..127
+
+
+1.2.4 : Stream[4] 到 Steam[25]
+-------------------------------
+
+16 Channels on 11 bits (0..2047)，16个通道，每个通道占用11位，值得范围为0~2047
+
+16 Channels * 11Bits = 22 bytes
+
+=========  =======
+通道直      百分比
+=========  =======
+  0         -125%
+204         -100%
+1024        +0%%
+1843        +100%
+
+2047        +125%
+=========  =======
+
+
+Values are concatenated to fit in 22 bytes like in SBUS protocol.
+Failsafe values have exactly the same range/values than normal
+channels except the extremes where
+0=no pulse, 2047=hold. If failsafe is not set or RX then failsafe packets should not be sent.
+
+1.3 遥测协议(Telemetry protocol)
+================================
+
++-------+--------+--------+--------+--------+--------+--------+-------------+
+| Stream| 0      | 1      | 2      |  3     | 4      | 4+n    | 3+leng      |
++-------+--------+--------+--------+--------+--------+--------+-------------+
+| DATA  | 0x4D   |  0x50  | Type   |  leng  | data[0]| data[n]| data[leng-1]|
++-------+--------+--------+--------+--------+--------+--------+-------------+
+
+- Stream[0]:head
+  该数值固定为0x4D
+
+- Stream[1]:head
+  该数值固定为0x50
+
+- Stream[2]:Type
+
+  - 0x01 : Multimodule Status
+  - 0x02 : Frksy S.port telemetry(Frsky S.port 遥测的回传数据)
+  - 0x03 : Frsky Hub telemetry
+  - 0x04 : Spektrum telemetry data
+  - 0x05 : DSM bind data
+  - 0x06 : Flysky AFHDS2 telemetry data
+  - 0x0A : Hitec telemetry data
+  - 0x0B : Spectrum Scanner telemetry data
+  - 0x0C : Flysky AFHDS2 telemetry data
+  - 0x0D : RX channels forwarding
+
+1.3.1 高频头的状态信息(Multimodule Status)
+-------------------------------------------
+
++-------+--------+--------+--------+--------+--------+--------+-------+----------+------------+
+| Stream| 0      | 1      | 2      |  3     | 4      | 5      | 6     | 7        | 8          |
++-------+--------+--------+--------+--------+--------+--------+-------+----------+------------+
+| DATA  | 0x4D   |  0x50  | 0x01   |  5     | Flag   | major  | minor | revision | patchlevel |
++-------+--------+--------+--------+--------+--------+--------+-------+----------+------------+
+
+- Stream[4]: 状态标志(Flags)
+
+  - 0位 :Imput signal
+
+    - 1 : detected
+    - 0 : No detected
+
+  - 1位 :Serial mode
+
+    - 1 : enabled
+    - 0 : Disable
+
+  - 2位 : Protocol Status
+
+    - 1 : valid
+    - 0 : unvalid
+
+  - 3位 :
+
+    - 1 : Module is in binding mode
+    - 0 : Unbinding
+
+  - 4位
+
+    - 1 : Module waits a bind event to load the protocol
+    - 0 :
+
+  - 5位
+
+    - 1 :Failsafe supported by currently running protocol
+    - 0 :不支持失控保护
+
+- Stream[5-8]:
+  version of multi code ,should be displayed as major.minor.revision.patchlevel
+
+
+1.3.2 Frksy S.port telemetry
+------------------------------
+
+RSSI
+
+
+
+
+

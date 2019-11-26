@@ -14,6 +14,9 @@ Welcome to TxBook's documentation!
    mapfile
    test
    st06_designe_rule
+   hex_file_format
+   mulprotocol
+   mulprotocol_problem
 
 API
 ===

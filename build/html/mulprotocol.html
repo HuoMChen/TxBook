@@ -1,0 +1,760 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>高频头 &mdash; TxBook 1.0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="TxBook 1.0.1 文档" href="index.html"/>
+        <link rel="prev" title="1.HEX 文件" href="hex_file_format.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TxBook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hello.html">hello world</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">The TxBook API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mapfile.html">map文件分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">Sphinx Quick Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="st06_designe_rule.html">ST06工程设计规范</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hex_file_format.html">1.HEX 文件</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">高频头</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">简介</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#serial-mode">1.1 Serial mode</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">1.1.1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#serial-protocol">1.2 serial Protocol</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-0">1.2.1 Stream[0]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-1">1.2.2 Stream[1]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-3">1.2.3 : Stream[3]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-4-steam-25">1.2.4 : Stream[4] 到 Steam[25]</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#telemetry-protocol">1.3 遥测协议(Telemetry protocol)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#multimodule-status">1.3.1 高频头的状态信息(Multimodule Status)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frksy-s-port-telemetry">1.3.2 Frksy S.port telemetry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TxBook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>高频头</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/mulprotocol.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>高频头<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>简介<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="serial-mode">
+<h3>1.1 Serial mode<a class="headerlink" href="#serial-mode" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id3">
+<h4>1.1.1<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h4>
+</div>
+<div class="section" id="serial-protocol">
+<h4>1.2 serial Protocol<a class="headerlink" href="#serial-protocol" title="永久链接至标题">¶</a></h4>
+<p>比特率 100000</p>
+</div>
+</div>
+<div class="section" id="stream-0">
+<h3>1.2.1 Stream[0]<a class="headerlink" href="#stream-0" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>0x55  Sub_Protocol values are 0..31   Stream contains channels</p></li>
+<li><p>0x54  Sub_Protocol values are 32..63  Stream contains channels</p></li>
+<li><p>0x57  sub_protocol values are 0..31   Stream contains failsafe</p></li>
+<li><p>0x56  sub_protocol values are 32..63  Stream contains failsafe</p></li>
+</ul>
+</div>
+<div class="section" id="stream-1">
+<h3>1.2.2 Stream[1]<a class="headerlink" href="#stream-1" title="永久链接至标题">¶</a></h3>
+<p>sub_protocol is 0..31 (bits 0..4)</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>6</p></td>
+<td><p>5</p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>BindBit</p></td>
+<td><p>AutoBB</p></td>
+<td><p>RangC</p></td>
+<td colspan="5"><p>sub_protocol</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>位 7: 绑定标志位(BindBit)</p>
+<ul>
+<li><p>0 No</p></li>
+<li><p>1 Yes</p></li>
+</ul>
+</li>
+<li><p>位 6: 自动绑定标志位(AutoBindBit)</p>
+<ul>
+<li><p>0 No</p></li>
+<li><p>1 Yes</p></li>
+</ul>
+</li>
+<li><p>位 5 : (RangeCheck)</p>
+<ul>
+<li><p>0 No</p></li>
+<li><p>1 Yes</p></li>
+</ul>
+</li>
+<li><p>位 4:0 : 协议序号(sub_protocol)</p>
+<ul>
+<li><p>当Byte 0为0x54，该直加上32才为对应的协议序号</p></li>
+</ul>
+</li>
+</ul>
+<p>1.2.3 Stream[2]</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>6</p></td>
+<td><p>5</p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>PowerV</p></td>
+<td colspan="3"><p>Type</p></td>
+<td colspan="4"><p>RxNum</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>位 7： Power value</p>
+<ul>
+<li><p>0 : low</p></li>
+<li><p>1 : hight</p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>位 6:4 : Type Value</p>
+<ul>
+<li><p>sub_protocol==Flysky</p>
+<ul>
+<li><p>0 : flasky</p></li>
+<li><p>1 : V9x9</p></li>
+<li><p>2 : V6x6</p></li>
+<li><p>3 : V912</p></li>
+<li><p>4 : CX20</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==FRSKYX</p>
+<ul>
+<li><p>0 : CH_16</p></li>
+<li><p>1 : CH_8</p></li>
+<li><p>2 : EU_16</p></li>
+<li><p>3 :EU_8</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==FRSKYX_RX</p>
+<ul>
+<li><p>0 : FCC</p></li>
+<li><p>1 :       LBT</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==Hubsan</p>
+<ul>
+<li><p>0 : H107</p></li>
+<li><p>1 : H301</p></li>
+<li><p>2 : H501</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==Hisky</p>
+<ul>
+<li><p>0 : Hisky</p></li>
+<li><p>1 : HK310</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==DSM</p>
+<ul>
+<li><p>0 : DSM2_22</p></li>
+<li><p>1 : DSM2_11</p></li>
+<li><p>2 : DSMX_22</p></li>
+<li><p>3 : DSMX_11</p></li>
+<li><p>4 : DSM_AUTO</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==YD717</p>
+<ul>
+<li><p>0 : YD717</p></li>
+<li><p>1 : SKYWLKR</p></li>
+<li><p>2 : SYMAX4</p></li>
+<li><p>3 : XINXUN</p></li>
+<li><p>4 : NIHUI</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==KN</p>
+<ul>
+<li><p>0 : WLTOYS</p></li>
+<li><p>1 : FEILUN</p></li>
+</ul>
+</li>
+<li><p>sub_protocol–SYMAX</p>
+<ul>
+<li><p>0 : SYMAX</p></li>
+<li><p>1 : SYMAX5C</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==CX10</p>
+<ul>
+<li><p>0 : CX10_GREEN</p></li>
+<li><p>1 : CX10_BLUE</p></li>
+<li><p>2 : DM007</p></li>
+<li><p>3 : —-</p></li>
+<li><p>4 : JC3015_1</p></li>
+<li><p>5 : JC3015_2</p></li>
+<li><p>6 : MK33041</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==Q2X2</p>
+<ul>
+<li><p>0 : Q222</p></li>
+<li><p>1 : Q242</p></li>
+<li><p>3 : Q282</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==CG023</p>
+<ul>
+<li><p>0 : CG023</p></li>
+<li><p>1 : YD829</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==BAYANG</p>
+<ul>
+<li><p>0 : BAYANG</p></li>
+<li><p>1 : H8S3D</p></li>
+<li><p>2 : X16_AH</p></li>
+<li><p>3 : IRDRONE</p></li>
+<li><p>4 : DHD_D4</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==MT99XX</p>
+<ul>
+<li><p>0 : MT99</p></li>
+<li><p>1 : H7</p></li>
+<li><p>2 : YZ</p></li>
+<li><p>3 : LS</p></li>
+<li><p>4 : FY805</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==MJXQ</p>
+<ul>
+<li><p>0 : WLH08</p></li>
+<li><p>1 : X600</p></li>
+<li><p>2 : X800</p></li>
+<li><p>3 : H26D</p></li>
+<li><p>4 : E010</p></li>
+<li><p>5 : H26WH</p></li>
+<li><p>6 : PHOENIX</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==HONTAI</p>
+<ul>
+<li><p>0 : HONTAI</p></li>
+<li><p>1 : JJRCX1</p></li>
+<li><p>2 : X5C1</p></li>
+<li><p>3 : FQ777_951</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==AFHDS2A</p>
+<ul>
+<li><p>0 : PWM_IBUS</p></li>
+<li><p>1 : PPM_IBUS</p></li>
+<li><p>2 : PWM_SBUS</p></li>
+<li><p>3 : PPM_SBUS</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==V2X2</p>
+<ul>
+<li><p>0 : V2X2</p></li>
+<li><p>1 : JXD506</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==FY326</p>
+<ul>
+<li><p>0 : FY326</p></li>
+<li><p>1 : FY319</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==WK2x01</p>
+<ul>
+<li><p>0 : WK2801</p></li>
+<li><p>1 : WK2401</p></li>
+<li><p>2 : W6_5_1</p></li>
+<li><p>3 : W6_6_1</p></li>
+<li><p>4 : W6_HEL</p></li>
+<li><p>5 : W6_HEL_I</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==Q303</p>
+<ul>
+<li><p>0 : Q303</p></li>
+<li><p>1 : CX35</p></li>
+<li><p>2 : CX10D</p></li>
+<li><p>3 : CX10WD</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==CABELL</p>
+<ul>
+<li><p>0 : CABELL_V3</p></li>
+<li><p>1 : CABELL_V3_TELEMETRY</p></li>
+<li><p>6 : CABELL_SET_FAIL_SAFE</p></li>
+<li><p>7 : CABELL_UNBIND</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==H8_3D</p>
+<ul>
+<li><p>0 : H8_3D</p></li>
+<li><p>1 : H20H</p></li>
+<li><p>2 : H20MINI</p></li>
+<li><p>3 : H30MINI</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==CORONA</p>
+<ul>
+<li><p>0 : COR_V1</p></li>
+<li><p>1 : COR_V2</p></li>
+<li><p>2 : FD_V3</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==HITEC</p>
+<ul>
+<li><p>0 : OPT_FW</p></li>
+<li><p>1 : OPT_HUB</p></li>
+<li><p>2 : MINIMA</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==SLT</p>
+<ul>
+<li><p>0 : SLT_V1</p></li>
+<li><p>1 : SLT_V2</p></li>
+<li><p>2 : Q100</p></li>
+<li><p>3 : Q200</p></li>
+<li><p>4 : MR100         4</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==E01X</p>
+<ul>
+<li><p>0 : E012</p></li>
+<li><p>1 : E015</p></li>
+<li><p>2 : E016H</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==GD00X</p>
+<ul>
+<li><p>0 : GD_V1</p></li>
+<li><p>1 : GD_V2</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==REDPINE</p>
+<ul>
+<li><p>0 : RED_FAST</p></li>
+<li><p>1 : RED_SLOW</p></li>
+</ul>
+</li>
+<li><p>sub_protocol==TRAXXAS</p>
+<ul>
+<li><p>0 : RX6519</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>位 3:0 : RxNum</p></li>
+</ul>
+</div>
+<div class="section" id="stream-3">
+<h3>1.2.3 : Stream[3]<a class="headerlink" href="#stream-3" title="永久链接至标题">¶</a></h3>
+<p>option protocol,values is -128..127</p>
+</div>
+<div class="section" id="stream-4-steam-25">
+<h3>1.2.4 : Stream[4] 到 Steam[25]<a class="headerlink" href="#stream-4-steam-25" title="永久链接至标题">¶</a></h3>
+<p>16 Channels on 11 bits (0..2047)，16个通道，每个通道占用11位，值得范围为0~2047</p>
+<p>16 Channels * 11Bits = 22 bytes</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 56%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>通道直</p></th>
+<th class="head"><p>百分比</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>-125%</p></td>
+</tr>
+<tr class="row-odd"><td><p>204</p></td>
+<td><p>-100%</p></td>
+</tr>
+<tr class="row-even"><td><p>1024</p></td>
+<td><p>+0%%</p></td>
+</tr>
+<tr class="row-odd"><td><p>1843</p></td>
+<td><p>+100%</p></td>
+</tr>
+<tr class="row-even"><td><p>2047</p></td>
+<td><p>+125%</p></td>
+</tr>
+</tbody>
+</table>
+<p>Values are concatenated to fit in 22 bytes like in SBUS protocol.
+Failsafe values have exactly the same range/values than normal
+channels except the extremes where
+0=no pulse, 2047=hold. If failsafe is not set or RX then failsafe packets should not be sent.</p>
+<div class="section" id="telemetry-protocol">
+<h4>1.3 遥测协议(Telemetry protocol)<a class="headerlink" href="#telemetry-protocol" title="永久链接至标题">¶</a></h4>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 19%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Stream</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>4+n</p></td>
+<td><p>3+leng</p></td>
+</tr>
+<tr class="row-even"><td><p>DATA</p></td>
+<td><p>0x4D</p></td>
+<td><p>0x50</p></td>
+<td><p>Type</p></td>
+<td><p>leng</p></td>
+<td><p>data[0]</p></td>
+<td><p>data[n]</p></td>
+<td><p>data[leng-1]</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Stream[0]:head
+该数值固定为0x4D</p></li>
+<li><p>Stream[1]:head
+该数值固定为0x50</p></li>
+<li><p>Stream[2]:Type</p>
+<ul>
+<li><p>0x01 : Multimodule Status</p></li>
+<li><p>0x02 : Frksy S.port telemetry(Frsky S.port 遥测的回传数据)</p></li>
+<li><p>0x03 : Frsky Hub telemetry</p></li>
+<li><p>0x04 : Spektrum telemetry data</p></li>
+<li><p>0x05 : DSM bind data</p></li>
+<li><p>0x06 : Flysky AFHDS2 telemetry data</p></li>
+<li><p>0x0A : Hitec telemetry data</p></li>
+<li><p>0x0B : Spectrum Scanner telemetry data</p></li>
+<li><p>0x0C : Flysky AFHDS2 telemetry data</p></li>
+<li><p>0x0D : RX channels forwarding</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="multimodule-status">
+<h3>1.3.1 高频头的状态信息(Multimodule Status)<a class="headerlink" href="#multimodule-status" title="永久链接至标题">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 14%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Stream</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>DATA</p></td>
+<td><p>0x4D</p></td>
+<td><p>0x50</p></td>
+<td><p>0x01</p></td>
+<td><p>5</p></td>
+<td><p>Flag</p></td>
+<td><p>major</p></td>
+<td><p>minor</p></td>
+<td><p>revision</p></td>
+<td><p>patchlevel</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Stream[4]: 状态标志(Flags)</p>
+<ul>
+<li><p>0位 :Imput signal</p>
+<ul>
+<li><p>1 : detected</p></li>
+<li><p>0 : No detected</p></li>
+</ul>
+</li>
+<li><p>1位 :Serial mode</p>
+<ul>
+<li><p>1 : enabled</p></li>
+<li><p>0 : Disable</p></li>
+</ul>
+</li>
+<li><p>2位 : Protocol Status</p>
+<ul>
+<li><p>1 : valid</p></li>
+<li><p>0 : unvalid</p></li>
+</ul>
+</li>
+<li><p>3位 :</p>
+<ul>
+<li><p>1 : Module is in binding mode</p></li>
+<li><p>0 : Unbinding</p></li>
+</ul>
+</li>
+<li><p>4位</p>
+<ul>
+<li><p>1 : Module waits a bind event to load the protocol</p></li>
+<li><p>0 :</p></li>
+</ul>
+</li>
+<li><p>5位</p>
+<ul>
+<li><p>1 :Failsafe supported by currently running protocol</p></li>
+<li><p>0 :不支持失控保护</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Stream[5-8]:
+version of multi code ,should be displayed as major.minor.revision.patchlevel</p></li>
+</ul>
+</div>
+<div class="section" id="frksy-s-port-telemetry">
+<h3>1.3.2 Frksy S.port telemetry<a class="headerlink" href="#frksy-s-port-telemetry" title="永久链接至标题">¶</a></h3>
+<p>RSSI</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="hex_file_format.html" class="btn btn-neutral" title="1.HEX 文件" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, RanBiron.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

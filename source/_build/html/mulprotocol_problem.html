@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>hello world &mdash; TxBook 1.0.1 文档</title>
+  <title>高频头问题日志 &mdash; TxBook 1.0.1 文档</title>
   
 
   
@@ -34,8 +34,7 @@
               href="genindex.html"/>
         <link rel="search" title="搜索" href="search.html"/>
     <link rel="top" title="TxBook 1.0.1 文档" href="index.html"/>
-        <link rel="next" title="The TxBook API reference" href="api.html"/>
-        <link rel="prev" title="Welcome to TxBook’s documentation!" href="index.html"/> 
+        <link rel="prev" title="高频头" href="mulprotocol.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -81,13 +80,21 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">hello world</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello.html">hello world</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">The TxBook API reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mapfile.html">map文件分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test.html">Sphinx Quick Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="st06_designe_rule.html">ST06工程设计规范</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hex_file_format.html">1.HEX 文件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mulprotocol.html">1.高频头协议</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol.html">高频头</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">高频头问题日志</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#et12">移植到ET12</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flash">1、内部FLASH存储空间不足</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2、测试验证</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -118,11 +125,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>hello world</li>
+    <li>高频头问题日志</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/hello.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/mulprotocol_problem.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -132,117 +139,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="hello-world">
-<h1>hello world<a class="headerlink" href="#hello-world" title="永久链接至标题">¶</a></h1>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 7%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 8%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Protocol
-Name</p></th>
-<th class="head"><p>Protocol
-Number</p></th>
-<th class="head"><p>Sub_Proto
-0</p></th>
-<th class="head"><p>Sub_Proto
-1</p></th>
-<th class="head"><p>Sub_Proto
-2</p></th>
-<th class="head"><p>Sub_Proto
-3</p></th>
-<th class="head"><p>Sub_Proto
-4</p></th>
-<th class="head"><p>Sub_Proto
-5</p></th>
-<th class="head"><p>Sub_Proto
-6</p></th>
-<th class="head"><p>Sub_Proto
-7</p></th>
-<th class="head"><p>RF
-Module</p></th>
-<th class="head"><p>Emulation</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Wfly</p></td>
-<td><p>40</p></td>
-<td><p>WFLY</p></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>FrskyD</p></td>
-<td><p>3</p></td>
-<td><p>FrskyD</p></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>FrskyV</p></td>
-<td><p>25</p></td>
-<td><p>FrskyV</p></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p>FrskX</p></td>
-<td><p>15</p></td>
-<td><p>CH_16</p></td>
-<td><p>CH_8</p></td>
-<td><p>EU_16</p></td>
-<td><p>EU_8</p></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p>FrskyX_RX</p></td>
-<td><p>55</p></td>
-<td><p>FCC</p></td>
-<td><p>EU_LBT</p></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+  <div class="section" id="id1">
+<h1>高频头问题日志<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="et12">
+<h2>移植到ET12<a class="headerlink" href="#et12" title="永久链接至标题">¶</a></h2>
+<div class="section" id="flash">
+<h3>1、内部FLASH存储空间不足<a class="headerlink" href="#flash" title="永久链接至标题">¶</a></h3>
+<p>字库、图片存放在内部FLASH。可以考虑把图片放在外部FLASH存储。</p>
+<p>影响：会出现界面卡顿的情况。</p>
+<p>原因：ET12中外部FALSH存放
+图片、音频、发射机参数，而FLASH的读写操作都放在比界面任务高的服务任务（1MS，并且
+外部FLASH的读、写、擦除操作都是高耗时的操作。当获取图片、音频和保存发射机参数同时
+发生，会造成比服务任务低的任务无法进行，对于无法及时相应的界面任务，会造成界面卡顿
+的现象，同时同个任务的其他操作也会周期变长。</p>
+<p>解决办法：保证所有任务的周期运行。对于FALSH中阻塞的耗时操作放在新任务，而且优先级
+最低。同时FLASH的SPI应该用DMA。</p>
+</div>
+<div class="section" id="id2">
+<h3>2、测试验证<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<p>高频头相关功能的验证。</p>
+<p>解决办法：</p>
+<ul class="simple">
+<li><p>完全开发上位机模拟高频头，无法保证时序完全对应。</p></li>
+<li><p>移植高频头程序，实现上位机模拟高频头。难点在于移植高频头的程序</p></li>
+</ul>
+<p>3、</p>
+</div>
+</div>
 </div>
 
 
@@ -252,10 +175,8 @@ Module</p></th>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api.html" class="btn btn-neutral float-right" title="The TxBook API reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral" title="Welcome to TxBook’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mulprotocol.html" class="btn btn-neutral" title="高频头" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
