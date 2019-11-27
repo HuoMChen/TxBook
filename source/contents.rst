@@ -14,7 +14,7 @@ Welcome to TxBook's documentation!
    mapfile
    test
    mulprotocol
-
+   mulprotocol_problem
 
 API
 ===
