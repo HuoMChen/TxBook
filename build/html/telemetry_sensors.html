@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Telemetry Sensors &mdash; TxBook 1.0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="TxBook 1.0.1 文档" href="index.html"/>
+        <link rel="next" title="利用keil生成lib" href="keil_output_lib.html"/>
+        <link rel="prev" title="Crossfire Protocol" href="crossfire.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TxBook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol.html">高频头</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol_problem.html">高频头问题日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crossfire.html">Crossfire Protocol</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Telemetry Sensors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">一些概念</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#idsubidinstances">id、subid、instances</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">传感器类型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">为什么要这样分？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom">Custom类传感器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caculated">Caculated类传感器</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">一些功能</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">传感器丢失检测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">精度选择</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">数据结构</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#telemetrysensor">TelemetrySensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#telemetryitem">TelemetryItem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="keil_output_lib.html">利用keil生成lib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_extern_module_lib_to_project.html">移植外部模块库到工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extern_module_lib.html">外部模块库</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TxBook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Telemetry Sensors</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/telemetry_sensors.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="telemetry-sensors">
+<h1>Telemetry Sensors<a class="headerlink" href="#telemetry-sensors" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>简介<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>telemetry_sensor.c文件的主要作用就是把遥测回来的传感器数据数据按照用户的
+在界面的设置进行运算处理、单位转换、精度转换等相关处理，其实这部分内容已经是
+属于应用层次。</p>
+</div>
+<div class="section" id="id2">
+<h2>一些概念<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="idsubidinstances">
+<h3>id、subid、instances<a class="headerlink" href="#idsubidinstances" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>传感器类型<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>传感器类型分为两类：Custom和Caculated</p>
+<div class="section" id="id4">
+<h3>为什么要这样分？<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="custom">
+<h3>Custom类传感器<a class="headerlink" href="#custom" title="永久链接至标题">¶</a></h3>
+<p>这类传感器的数据来源于外部模块，是真实的传感器，所以可以设置Id和Subid用于
+匹配外部模块的传感器。</p>
+</div>
+<div class="section" id="caculated">
+<h3>Caculated类传感器<a class="headerlink" href="#caculated" title="永久链接至标题">¶</a></h3>
+<p>这类传感器的数据源来自已经连接上的外部传感器，是虚拟的传感器，所以不能设置
+Id和Subid。根据需要对该传感器进行各类运算操作。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>一些功能<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id6">
+<h3>传感器丢失检测<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<p>能够检测传感器是否处于实时连接、当传感器断开10S则为丢失。</p>
+</div>
+<div class="section" id="id7">
+<h3>精度选择<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p>对于传感器的数据可以进行</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>数据结构<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<div class="section" id="telemetrysensor">
+<h3>TelemetrySensor<a class="headerlink" href="#telemetrysensor" title="永久链接至标题">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
+  <span class="k">union</span> <span class="p">{</span>
+    <span class="kt">uint16_t</span> <span class="n">id</span><span class="p">;</span>                   <span class="c1">// data identifier, for FrSky we can reuse existing ones. Source unit is derived from type.</span>
+    <span class="kt">uint16_t</span> <span class="n">persistentValue</span><span class="p">;</span>
+  <span class="p">}</span><span class="n">identifier</span><span class="p">;</span>
+  <span class="k">union</span> <span class="p">{</span>
+    <span class="k">struct</span> <span class="p">{</span>
+      <span class="kt">uint8_t</span> <span class="nl">physID</span><span class="p">:</span><span class="mi">5</span><span class="p">;</span>
+      <span class="kt">uint8_t</span> <span class="nl">rxIndex</span><span class="p">:</span><span class="mi">3</span><span class="p">;</span> <span class="c1">// 1 bit for module index, 2 bits for receiver index</span>
+    <span class="p">}</span><span class="n">frskyInstance</span><span class="p">;</span>
+    <span class="kt">uint8_t</span> <span class="n">instance</span><span class="p">;</span>              <span class="c1">// instance ID to allow handling multiple instances of same value type, for FrSky can be the physical ID of the sensor</span>
+    <span class="kt">uint8_t</span> <span class="n">formula</span><span class="p">;</span>
+  <span class="p">}</span><span class="n">ins</span><span class="p">;</span>
+  <span class="kt">char</span>     <span class="n">label</span><span class="p">[</span><span class="n">TELEM_LABEL_LEN</span><span class="p">];</span> <span class="c1">// user defined label</span>
+  <span class="kt">uint8_t</span>  <span class="n">subId</span><span class="p">;</span>   <span class="cm">/*每种传感器不一样*/</span>
+  <span class="kt">uint8_t</span>  <span class="nl">type</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// 0=custom / 1=calculated // user can choose what unit to display each value in</span>
+  <span class="kt">uint8_t</span>  <span class="nl">spare1</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+  <span class="kt">uint8_t</span>  <span class="nl">unit</span><span class="p">:</span><span class="mi">6</span><span class="p">;</span>  <span class="cm">/*精度*/</span>
+  <span class="kt">uint8_t</span>  <span class="nl">prec</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span>  <span class="cm">/*单位*/</span>
+  <span class="kt">uint8_t</span>  <span class="nl">autoOffset</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+  <span class="kt">uint8_t</span>  <span class="nl">filter</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+  <span class="kt">uint8_t</span>  <span class="nl">logs</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>  <span class="cm">/*用于表示传感器数据是否存于外部存储*/</span>
+  <span class="kt">uint8_t</span>  <span class="nl">persistent</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+  <span class="kt">uint8_t</span>  <span class="nl">onlyPositive</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+  <span class="kt">uint8_t</span>  <span class="nl">spare2</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">union</span> <span class="p">{</span>
+    <span class="k">struct</span><span class="p">{</span>
+      <span class="kt">uint16_t</span> <span class="n">ratio</span><span class="p">;</span>   <span class="cm">/*比例*/</span>
+      <span class="kt">int16_t</span>  <span class="n">offset</span><span class="p">;</span>  <span class="cm">/*偏移*/</span>
+    <span class="p">}</span><span class="n">custom</span><span class="p">;</span>
+    <span class="k">struct</span><span class="p">{</span>
+      <span class="kt">uint8_t</span> <span class="n">source</span><span class="p">;</span>   <span class="cm">/*数据源*/</span>
+      <span class="kt">uint8_t</span> <span class="n">index</span><span class="p">;</span>
+      <span class="kt">uint16_t</span> <span class="n">spare</span><span class="p">;</span>
+    <span class="p">}</span><span class="n">cell</span><span class="p">;</span>
+    <span class="k">struct</span><span class="p">{</span>
+      <span class="kt">int8_t</span> <span class="n">sources</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+    <span class="p">}</span><span class="n">calc</span><span class="p">;</span>
+    <span class="k">struct</span><span class="p">{</span>
+      <span class="kt">uint8_t</span> <span class="n">source</span><span class="p">;</span>
+      <span class="kt">uint8_t</span> <span class="n">spare</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+    <span class="p">}</span><span class="n">consumption</span><span class="p">;</span>
+    <span class="k">struct</span><span class="p">{</span>
+      <span class="kt">uint8_t</span> <span class="n">gps</span><span class="p">;</span>
+      <span class="kt">uint8_t</span> <span class="n">alt</span><span class="p">;</span>
+      <span class="kt">uint16_t</span> <span class="n">spare</span><span class="p">;</span>
+    <span class="p">}</span><span class="n">dist</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">param</span><span class="p">;</span>
+  <span class="p">}</span><span class="n">data</span><span class="p">;</span>
+
+<span class="p">}</span><span class="n">TelemetrySensor</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>这部分数据是用户可设置的，需要存储。</p>
+</div>
+<div class="section" id="telemetryitem">
+<h3>TelemetryItem<a class="headerlink" href="#telemetryitem" title="永久链接至标题">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
+    <span class="k">union</span> <span class="p">{</span>
+      <span class="kt">int32_t</span>  <span class="n">value</span><span class="p">;</span>           <span class="c1">// value, stored as uint32_t but interpreted accordingly to type</span>
+      <span class="kt">uint32_t</span> <span class="n">distFromEarthAxis</span><span class="p">;</span>
+    <span class="p">}</span><span class="n">value</span><span class="p">;</span>
+
+    <span class="k">union</span> <span class="p">{</span>
+      <span class="kt">int32_t</span> <span class="n">valueMin</span><span class="p">;</span>         <span class="c1">// min store</span>
+      <span class="kt">int32_t</span> <span class="n">pilotLongitude</span><span class="p">;</span>
+    <span class="p">}</span><span class="n">min</span><span class="p">;</span>
+
+    <span class="k">union</span> <span class="p">{</span>
+      <span class="kt">int32_t</span> <span class="n">valueMax</span><span class="p">;</span>         <span class="c1">// max store</span>
+      <span class="kt">int32_t</span> <span class="n">pilotLatitude</span><span class="p">;</span>
+    <span class="p">}</span><span class="n">max</span><span class="p">;</span>
+
+    <span class="kt">uint8_t</span> <span class="n">lastReceived</span><span class="p">;</span>       <span class="c1">// for detection of sensor loss</span>
+
+    <span class="k">union</span> <span class="p">{</span>
+      <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">int32_t</span>  <span class="n">offsetAuto</span><span class="p">;</span>
+        <span class="kt">int32_t</span>  <span class="n">filterValues</span><span class="p">[</span><span class="n">TELEMETRY_AVERAGE_COUNT</span><span class="p">];</span>
+      <span class="p">}</span> <span class="n">std</span><span class="p">;</span>
+      <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">uint16_t</span> <span class="n">prescale</span><span class="p">;</span>
+      <span class="p">}</span> <span class="n">consumption</span><span class="p">;</span>
+      <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">uint8_t</span>   <span class="n">count</span><span class="p">;</span>
+        <span class="n">CellValue</span> <span class="n">values</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+      <span class="p">}</span> <span class="n">cells</span><span class="p">;</span>
+      <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">uint16_t</span> <span class="n">year</span><span class="p">;</span>          <span class="c1">// full year (4 digits)</span>
+        <span class="kt">uint8_t</span>  <span class="n">month</span><span class="p">;</span>
+        <span class="kt">uint8_t</span>  <span class="n">day</span><span class="p">;</span>
+        <span class="kt">uint8_t</span>  <span class="n">hour</span><span class="p">;</span>
+        <span class="kt">uint8_t</span>  <span class="n">min</span><span class="p">;</span>
+        <span class="kt">uint8_t</span>  <span class="n">sec</span><span class="p">;</span>
+      <span class="p">}</span> <span class="n">datetime</span><span class="p">;</span>
+      <span class="k">struct</span> <span class="p">{</span>
+        <span class="kt">int32_t</span> <span class="n">latitude</span><span class="p">;</span>
+        <span class="kt">int32_t</span> <span class="n">longitude</span><span class="p">;</span>
+        <span class="c1">// pilot longitude is stored in min</span>
+        <span class="c1">// pilot latitude is stored in max</span>
+        <span class="c1">// distFromEarthAxis is stored in value</span>
+      <span class="p">}</span> <span class="n">gps</span><span class="p">;</span>
+      <span class="kt">char</span> <span class="n">text</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+    <span class="p">}</span><span class="n">telemetry</span><span class="p">;</span>
+
+<span class="p">}</span><span class="n">TelemetryItem</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>该结构体主要存储传感器的实时数值、最大、最小和状态信息，不需要存储。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="keil_output_lib.html" class="btn btn-neutral float-right" title="利用keil生成lib" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="crossfire.html" class="btn btn-neutral" title="Crossfire Protocol" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, RanBiron.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

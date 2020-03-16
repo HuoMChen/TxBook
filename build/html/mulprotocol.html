@@ -34,7 +34,8 @@
               href="genindex.html"/>
         <link rel="search" title="搜索" href="search.html"/>
     <link rel="top" title="TxBook 1.0.1 文档" href="index.html"/>
-        <link rel="prev" title="1.HEX 文件" href="hex_file_format.html"/> 
+        <link rel="next" title="高频头问题日志" href="mulprotocol_problem.html"/>
+        <link rel="prev" title="Welcome to TxBook’s documentation!" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,32 +81,35 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="hello.html">hello world</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">The TxBook API reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mapfile.html">map文件分析</a></li>
-<li class="toctree-l1"><a class="reference internal" href="test.html">Sphinx Quick Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="st06_designe_rule.html">ST06工程设计规范</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hex_file_format.html">1.HEX 文件</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">高频头</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">简介</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#serial-mode">1.1 Serial mode</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id3">1.1.1</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#serial-protocol">1.2 serial Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#serial-mode">1.1 Serial mode</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.1.1</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#serial-protocol">1.2 serial Protocol</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#stream-0">1.2.1 Stream[0]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stream-1">1.2.2 Stream[1]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-2">1.2.3 Stream[2]</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#stream-3">1.2.3 : Stream[3]</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#stream-4-steam-25">1.2.4 : Stream[4] 到 Steam[25]</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#telemetry-protocol">1.3 遥测协议(Telemetry protocol)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stream-4-steam-25">1.2.4 : Stream[4] 到 Steam[25]</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#telemetry-protocol">1.3 遥测协议(Telemetry protocol)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#multimodule-status">1.3.1 高频头的状态信息(Multimodule Status)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#frksy-s-port-telemetry">1.3.2 Frksy S.port telemetry</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol_problem.html">高频头问题日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol_problem.html#et12">移植到ET12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crossfire.html">Crossfire Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="telemetry_sensors.html">Telemetry Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keil_output_lib.html">利用keil生成lib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_extern_module_lib_to_project.html">移植外部模块库到工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extern_module_lib.html">外部模块库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extern_module_updata.html">升级说明</a></li>
 </ul>
 
             
@@ -154,16 +158,16 @@
 <h1>高频头<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
 <h2>简介<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+</div>
 <div class="section" id="serial-mode">
-<h3>1.1 Serial mode<a class="headerlink" href="#serial-mode" title="永久链接至标题">¶</a></h3>
+<h2>1.1 Serial mode<a class="headerlink" href="#serial-mode" title="永久链接至标题">¶</a></h2>
 <div class="section" id="id3">
-<h4>1.1.1<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h4>
+<h3>1.1.1<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+</div>
 </div>
 <div class="section" id="serial-protocol">
-<h4>1.2 serial Protocol<a class="headerlink" href="#serial-protocol" title="永久链接至标题">¶</a></h4>
+<h2>1.2 serial Protocol<a class="headerlink" href="#serial-protocol" title="永久链接至标题">¶</a></h2>
 <p>比特率 100000</p>
-</div>
-</div>
 <div class="section" id="stream-0">
 <h3>1.2.1 Stream[0]<a class="headerlink" href="#stream-0" title="永久链接至标题">¶</a></h3>
 <ul class="simple">
@@ -229,7 +233,9 @@
 </ul>
 </li>
 </ul>
-<p>1.2.3 Stream[2]</p>
+</div>
+<div class="section" id="stream-2">
+<h3>1.2.3 Stream[2]<a class="headerlink" href="#stream-2" title="永久链接至标题">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 12%" />
@@ -541,8 +547,10 @@
 Failsafe values have exactly the same range/values than normal
 channels except the extremes where
 0=no pulse, 2047=hold. If failsafe is not set or RX then failsafe packets should not be sent.</p>
+</div>
+</div>
 <div class="section" id="telemetry-protocol">
-<h4>1.3 遥测协议(Telemetry protocol)<a class="headerlink" href="#telemetry-protocol" title="永久链接至标题">¶</a></h4>
+<h2>1.3 遥测协议(Telemetry protocol)<a class="headerlink" href="#telemetry-protocol" title="永久链接至标题">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 10%" />
@@ -595,8 +603,6 @@ channels except the extremes where
 </ul>
 </li>
 </ul>
-</div>
-</div>
 <div class="section" id="multimodule-status">
 <h3>1.3.1 高频头的状态信息(Multimodule Status)<a class="headerlink" href="#multimodule-status" title="永久链接至标题">¶</a></h3>
 <table class="docutils align-default">
@@ -684,7 +690,232 @@ version of multi code ,should be displayed as major.minor.revision.patchlevel</p
 </div>
 <div class="section" id="frksy-s-port-telemetry">
 <h3>1.3.2 Frksy S.port telemetry<a class="headerlink" href="#frksy-s-port-telemetry" title="永久链接至标题">¶</a></h3>
-<p>RSSI</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 10%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Stream</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>3</p></td>
+<td><p>4</p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>DATA</p></td>
+<td><p>0x4D</p></td>
+<td><p>0x50</p></td>
+<td><p>0x02</p></td>
+<td><p>0x09</p></td>
+<td><p>PhsicId</p></td>
+<td><p>primid</p></td>
+<td colspan="2"><p>Id</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Stream</p></td>
+<td><p>8</p></td>
+<td><p>9</p></td>
+<td><p>10</p></td>
+<td><p>11</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-even"><td><p>DATA</p></td>
+<td><p>data[0]</p></td>
+<td><p>data[1]</p></td>
+<td><p>data[2]</p></td>
+<td><p>data[3]</p></td>
+<td><p>crc</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Stream[4]:物理Id(PhsicalId),也称端口号(Instance)</p></li>
+<li><p>Stream[5]:primid,用于指示当前遥测数据包的数据类型</p>
+<ul>
+<li><p>0x10 :表明当前为传感器的数据.</p></li>
+</ul>
+</li>
+<li><p>Stream[6-7]: 传感器Id,每个传感器都有一个唯一的Id.</p>
+<ul>
+<li><p>ALT_FIRST_ID              0x0100</p></li>
+<li><p>ALT_LAST_ID               0x010f</p></li>
+<li><p>VARIO_FIRST_ID            0x0110</p></li>
+<li><p>VARIO_LAST_ID             0x011f</p></li>
+<li><p>CURR_FIRST_ID             0x0200</p></li>
+<li><p>CURR_LAST_ID              0x020f</p></li>
+<li><p>VFAS_FIRST_ID             0x0210</p></li>
+<li><p>VFAS_LAST_ID              0x021f</p></li>
+<li><p>CELLS_FIRST_ID            0x0300</p></li>
+<li><p>CELLS_LAST_ID             0x030f</p></li>
+<li><p>T1_FIRST_ID               0x0400</p></li>
+<li><p>T1_LAST_ID                0x040f</p></li>
+<li><p>T2_FIRST_ID               0x0410</p></li>
+<li><p>T2_LAST_ID                0x041f</p></li>
+<li><p>RPM_FIRST_ID              0x0500</p></li>
+<li><p>RPM_LAST_ID               0x050f</p></li>
+<li><p>FUEL_FIRST_ID             0x0600</p></li>
+<li><p>FUEL_LAST_ID              0x060f</p></li>
+<li><p>ACCX_FIRST_ID             0x0700</p></li>
+<li><p>ACCX_LAST_ID              0x070f</p></li>
+<li><p>ACCY_FIRST_ID             0x0710</p></li>
+<li><p>ACCY_LAST_ID              0x071f</p></li>
+<li><p>ACCZ_FIRST_ID             0x0720</p></li>
+<li><p>ACCZ_LAST_ID              0x072f</p></li>
+<li><p>GPS_LONG_LATI_FIRST_ID    0x0800</p></li>
+<li><p>GPS_LONG_LATI_LAST_ID     0x080f</p></li>
+<li><p>GPS_ALT_FIRST_ID          0x0820</p></li>
+<li><p>GPS_ALT_LAST_ID           0x082f</p></li>
+<li><p>GPS_SPEED_FIRST_ID        0x0830</p></li>
+<li><p>GPS_SPEED_LAST_ID         0x083f</p></li>
+<li><p>GPS_COURS_FIRST_ID        0x0840</p></li>
+<li><p>GPS_COURS_LAST_ID         0x084f</p></li>
+<li><p>GPS_TIME_DATE_FIRST_ID    0x0850</p></li>
+<li><p>GPS_TIME_DATE_LAST_ID     0x085f</p></li>
+<li><p>A3_FIRST_ID               0x0900</p></li>
+<li><p>A3_LAST_ID                0x090f</p></li>
+<li><p>A4_FIRST_ID               0x0910</p></li>
+<li><p>A4_LAST_ID                0x091f</p></li>
+<li><p>AIR_SPEED_FIRST_ID        0x0a00</p></li>
+<li><p>AIR_SPEED_LAST_ID         0x0a0f</p></li>
+<li><p>RBOX_BATT1_FIRST_ID       0x0b00</p></li>
+<li><p>RBOX_BATT1_LAST_ID        0x0b0f</p></li>
+<li><p>RBOX_BATT2_FIRST_ID       0x0b10</p></li>
+<li><p>RBOX_BATT2_LAST_ID        0x0b1f</p></li>
+<li><p>RBOX_STATE_FIRST_ID       0x0b20</p></li>
+<li><p>RBOX_STATE_LAST_ID        0x0b2f</p></li>
+<li><p>RBOX_CNSP_FIRST_ID        0x0b30</p></li>
+<li><p>RBOX_CNSP_LAST_ID         0x0b3f</p></li>
+<li><p>SD1_FIRST_ID              0x0b40</p></li>
+<li><p>SD1_LAST_ID               0x0b4f</p></li>
+<li><p>ESC_POWER_FIRST_ID        0x0b50</p></li>
+<li><p>ESC_POWER_LAST_ID         0x0b5f</p></li>
+<li><p>ESC_RPM_CONS_FIRST_ID     0x0b60</p></li>
+<li><p>ESC_RPM_CONS_LAST_ID      0x0b6f</p></li>
+<li><p>ESC_TEMPERATURE_FIRST_ID  0x0b70</p></li>
+<li><p>ESC_TEMPERATURE_LAST_ID   0x0b7f</p></li>
+<li><p>X8R_FIRST_ID              0x0c20</p></li>
+<li><p>X8R_LAST_ID               0x0c2f</p></li>
+<li><p>S6R_FIRST_ID              0x0c30</p></li>
+<li><p>S6R_LAST_ID               0x0c3f</p></li>
+<li><p>GASSUIT_TEMP1_FIRST_ID    0x0d00</p></li>
+<li><p>GASSUIT_TEMP1_LAST_ID     0x0d0f</p></li>
+<li><p>GASSUIT_TEMP2_FIRST_ID    0x0d10</p></li>
+<li><p>GASSUIT_TEMP2_LAST_ID     0x0d1f</p></li>
+<li><p>GASSUIT_SPEED_FIRST_ID    0x0d20</p></li>
+<li><p>GASSUIT_SPEED_LAST_ID     0x0d2f</p></li>
+<li><p>GASSUIT_RES_VOL_FIRST_ID  0x0d30</p></li>
+<li><p>GASSUIT_RES_VOL_LAST_ID   0x0d3f</p></li>
+<li><p>GASSUIT_RES_PERC_FIRST_ID 0x0d40</p></li>
+<li><p>GASSUIT_RES_PERC_LAST_ID  0x0d4f</p></li>
+<li><p>GASSUIT_FLOW_FIRST_ID     0x0d50</p></li>
+<li><p>GASSUIT_FLOW_LAST_ID      0x0d5f</p></li>
+<li><p>GASSUIT_MAX_FLOW_FIRST_ID 0x0d60</p></li>
+<li><p>GASSUIT_MAX_FLOW_LAST_ID  0x0d6f</p></li>
+<li><p>GASSUIT_AVG_FLOW_FIRST_ID 0x0d70</p></li>
+<li><p>GASSUIT_AVG_FLOW_LAST_ID  0x0d7f</p></li>
+<li><p>SBEC_POWER_FIRST_ID       0x0e50</p></li>
+<li><p>SBEC_POWER_LAST_ID        0x0e5f</p></li>
+<li><p>DIY_FIRST_ID              0x5100</p></li>
+<li><p>DIY_LAST_ID               0x52ff</p></li>
+<li><p>DIY_STREAM_FIRST_ID       0x5000</p></li>
+<li><p>DIY_STREAM_LAST_ID        0x50ff</p></li>
+<li><p>FACT_TEST_ID              0xf000</p></li>
+<li><p>RSSI_ID                   0xf101</p></li>
+<li><p>ADC1_ID                   0xf102</p></li>
+<li><p>ADC2_ID                   0xf103</p></li>
+<li><p>SP2UART_A_ID              0xfd00</p></li>
+<li><p>SP2UART_B_ID              0xfd01</p></li>
+<li><p>BATT_ID                   0xf104</p></li>
+<li><p>RAS_ID                    0xf105</p></li>
+<li><p>XJT_VERSION_ID            0xf106</p></li>
+<li><p>FUEL_QTY_FIRST_ID         0x0a10</p></li>
+<li><p>FUEL_QTY_LAST_ID          0x0a1f</p></li>
+</ul>
+</li>
+<li><p>Stream[8-11]:用于存储传感器的数据，如果当前传感器的数据不足16个字节，则用0补其，如果超过16
+个字节，则下一次传输.</p></li>
+<li><p>Stream[12]:用于数据校验.</p></li>
+</ul>
+<p>RSSI Sensor</p>
+<ul class="simple">
+<li><p>Stream[4]:PhsicId 0x98</p></li>
+<li><p>Stream[5]: primid 0x10</p></li>
+<li><p>Stream[8-11]: 1个字节(有效数据为1个字节，data[0]),其余为0</p></li>
+</ul>
+<p>XJT VERSION</p>
+<ul class="simple">
+<li><p>Stream[8-11]: 2个字节（有效数据为2个字节, data[0],data[1])</p></li>
+</ul>
+<p>RAS Sensor</p>
+<ul class="simple">
+<li><p>Stream[8-11]: 1个字节</p></li>
+</ul>
+<p>ADC1/ADC2/BATT Sensor</p>
+<ul class="simple">
+<li><p>Stream[8-11]: 1个字节</p></li>
+</ul>
+<p>GPS Sensor</p>
+<p>经纬度，精确到分。</p>
+<ul class="simple">
+<li><p>Stream[8-11]: 4个字节 存储经度/纬度数据</p>
+<ul>
+<li><p>bit[31]:经纬度标志位</p>
+<ul>
+<li><p>1: 经度 (longitude)</p></li>
+<li><p>0: 纬度 (latitude)</p></li>
+</ul>
+</li>
+<li><p>bit[30]:正负数标志位</p>
+<ul>
+<li><p>1: 负数,对于经度表示W，纬度为S</p></li>
+<li><p>0: 正数,对于经度表示E，纬度为N</p></li>
+</ul>
+</li>
+<li><p>bit[29:0]: 经度/纬度数据</p>
+<ul>
+<li><p>经纬度（打包后） = 经纬度（打包前） * 60 * 10000</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>时间数据年月日，时分秒</p>
+<p>RBOX_BATT1/RBOX_BATT2 Sensor</p>
+<ul class="simple">
+<li><p>Stream[8-11]: 4个字节</p></li>
+</ul>
+<p>CELLS Sensor:电压测量，最多支持6节电池。每次传输2个电压数据,最多3次可以传
+完。</p>
+<ul class="simple">
+<li><p>Stream[8-11]: 4个字节</p>
+<ul>
+<li><p>Stream[8]: [3:0]电池的总节数,[7:4]当前节数</p></li>
+<li><p>Stream[9-11]:3个字节，低12位存储，高12位存储</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -696,8 +927,10 @@ version of multi code ,should be displayed as major.minor.revision.patchlevel</p
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="mulprotocol_problem.html" class="btn btn-neutral float-right" title="高频头问题日志" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="hex_file_format.html" class="btn btn-neutral" title="1.HEX 文件" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to TxBook’s documentation!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

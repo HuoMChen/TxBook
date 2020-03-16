@@ -9,18 +9,14 @@ Welcome to TxBook's documentation!
 .. toctree::
    :maxdepth: 2
 
-   hello
-   api
-   mapfile
-   test
    mulprotocol
-
-
-API
-===
-.. automodule:: run
-   :members:
-
+   mulprotocol_problem
+   crossfire
+   telemetry_sensors
+   keil_output_lib
+   add_extern_module_lib_to_project
+   extern_module_lib
+   extern_module_updata
 
 Indices and tables
 ==================
