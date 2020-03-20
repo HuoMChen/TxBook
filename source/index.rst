@@ -9,15 +9,17 @@ Welcome to TxBook's documentation!
 .. toctree::
    :maxdepth: 2
 
+   pre_requisits
+   todo
    mulprotocol
-   mulprotocol_problem
    crossfire
+   pulses_protocol
    telemetry_sensors
-   keil_output_lib.rst
-   add_extern_module_lib_to_project
+   sofrware_architecture
+   keil_output_lib
    extern_module_lib
-   extern_module_updata.rst
-
+   add_extern_module_lib_to_project
+   mulprotocol_problem
 
 Indices and tables
 ==================

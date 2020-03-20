@@ -79,14 +79,17 @@
             
             
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="mulprotocol.html">高频头</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mulprotocol_problem.html">高频头问题日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pre_requisits.html">相关的背景资料和要求</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol.html">多协议高频头</a></li>
 <li class="toctree-l1"><a class="reference internal" href="crossfire.html">Crossfire Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pulses_protocol.html">外部模块通信协议</a></li>
 <li class="toctree-l1"><a class="reference internal" href="telemetry_sensors.html">Telemetry Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sofrware_architecture.html">软件实现</a></li>
 <li class="toctree-l1"><a class="reference internal" href="keil_output_lib.html">利用keil生成lib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extern_module_lib.html">外部模块静态库</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add_extern_module_lib_to_project.html">移植外部模块库到工程</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extern_module_lib.html">外部模块库</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extern_module_updata.html">升级说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol_problem.html">高频头问题日志</a></li>
 </ul>
 
             
@@ -135,20 +138,26 @@
 <h1>Welcome to TxBook’s documentation!<a class="headerlink" href="#welcome-to-txbook-s-documentation" title="永久链接至标题">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="mulprotocol.html">高频头</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="pre_requisits.html">相关的背景资料和要求</a></li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="todo.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="todo.html#getting-started">Getting started</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol.html">多协议高频头</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mulprotocol.html#id2">简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mulprotocol.html#serial-mode">1.1 Serial mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mulprotocol.html#serial-protocol">1.2 serial Protocol</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mulprotocol.html#telemetry-protocol">1.3 遥测协议(Telemetry protocol)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="mulprotocol_problem.html">高频头问题日志</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="mulprotocol_problem.html#et12">移植到ET12</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="crossfire.html">Crossfire Protocol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="crossfire.html#id1">简介</a></li>
 <li class="toctree-l2"><a class="reference internal" href="crossfire.html#id2">协议格式</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pulses_protocol.html">外部模块通信协议</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pulses_protocol.html#id2">高频头协议</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="telemetry_sensors.html">Telemetry Sensors</a><ul>
@@ -159,8 +168,23 @@
 <li class="toctree-l2"><a class="reference internal" href="telemetry_sensors.html#id8">数据结构</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="sofrware_architecture.html">软件实现</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sofrware_architecture.html#id2">术语规定</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sofrware_architecture.html#id3">程序整体架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sofrware_architecture.html#id4">模块架构</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sofrware_architecture.html#id8">接口设计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sofrware_architecture.html#id11">数据结构设计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sofrware_architecture.html#id17">运行设计</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sofrware_architecture.html#id22">维护设计（说明为方便维护工作的设施,如维护模块等。）</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="keil_output_lib.html">利用keil生成lib</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="keil_output_lib.html#keil">利用keil生成外部模块库</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extern_module_lib.html">外部模块静态库</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extern_module_lib.html#id2">一些概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extern_module_lib.html#id3">接口文件说明</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="add_extern_module_lib_to_project.html">移植外部模块库到工程</a><ul>
@@ -168,13 +192,8 @@
 <li class="toctree-l2"><a class="reference internal" href="add_extern_module_lib_to_project.html#et12">移植外部模块库到ET12</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="extern_module_lib.html">外部模块库</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extern_module_lib.html#id2">一些概念</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extern_module_lib.html#id3">接口文件说明</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="extern_module_updata.html">升级说明</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extern_module_updata.html#id2">1.2.1.67 到 1.3.0.53</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol_problem.html">高频头问题日志</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mulprotocol_problem.html#et12">移植到ET12</a></li>
 </ul>
 </li>
 </ul>

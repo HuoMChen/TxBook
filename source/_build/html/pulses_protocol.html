@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>外部模块通信协议 &mdash; TxBook 1.0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="TxBook 1.0.1 文档" href="index.html"/>
+        <link rel="next" title="升级说明" href="extern_module_updata.html"/>
+        <link rel="prev" title="外部模块库" href="extern_module_lib.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TxBook
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol.html">高频头</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mulprotocol_problem.html">高频头问题日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crossfire.html">Crossfire Protocol</a></li>
+<li class="toctree-l1"><a class="reference internal" href="telemetry_sensors.html">Telemetry Sensors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keil_output_lib.html">利用keil生成lib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_extern_module_lib_to_project.html">移植外部模块库到工程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extern_module_lib.html">外部模块库</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">外部模块通信协议</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">高频头协议</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ppm">PPM-脉冲位置调制</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sbus">SBUS-串行总线</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ibus-flysky">IBUS（flysky）</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dsm2dsmx">DSM2和DSMX-数字系统多路复用器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crossfire">CROSSFIRE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">共同点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">差异</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extern_module_updata.html">升级说明</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">TxBook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>外部模块通信协议</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/pulses_protocol.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>外部模块通信协议<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>现外部模块与外部高频头的通信方式都是使用异步串行总线，对于有遥测功能的高频头至少使用TX、RX
+作为发和收，还有的高频头会使用到方向控制。</p>
+<div class="admonition important">
+<p class="admonition-title">重要</p>
+<p>外部高频头使用异步串行方式通信，对于ST系列单片机可以使用TIM比较输出+DMA+中断和
+UART+DMA+中断的方式来实现。ET12就是使用两种方式</p>
+</div>
+<div class="section" id="id2">
+<h2>高频头协议<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>这里讲解的是高频头的通信协议。</p>
+<div class="section" id="ppm">
+<h3>PPM-脉冲位置调制<a class="headerlink" href="#ppm" title="永久链接至标题">¶</a></h3>
+<p>PPM也是一个模拟信号，但是PPM不会为每个通道使用单独的电线，而是将每个信号一个接一个地堆叠，
+以沿同一根电线发送它们。这使得将R / C接收器连接到自动驾驶仪变得更加容易！PPM的其他变体包
+括CPPM和PPMsum，它们是特定制造商引入的轻微变体。</p>
+</div>
+<div class="section" id="sbus">
+<h3>SBUS-串行总线<a class="headerlink" href="#sbus" title="永久链接至标题">¶</a></h3>
+<p>顾名思义，SBUS是串行通信协议。它是由Futaba引入的，但也被许多FrSky产品普遍使用。除了
+作为数字信号之外，Sbus的主要优势在于，仅使用一根信号电缆即可支持多达18个通道！</p>
+</div>
+<div class="section" id="ibus-flysky">
+<h3>IBUS（flysky）<a class="headerlink" href="#ibus-flysky" title="永久链接至标题">¶</a></h3>
+<p>与SBUS相似，IBUS是flysky开发的一种新的数字串行协议，将在以后的许多新产品
+（例如FlySky FS-i6X 253 ）中使用。这是一种双向协议，这意味着它可以发送和接收数据，
+因此您的无线电可以将数据发送到飞机接收器，并且接收器可以将数据发送回发送器，
+例如电池电压</p>
+</div>
+<div class="section" id="dsm2dsmx">
+<h3>DSM2和DSMX-数字系统多路复用器<a class="headerlink" href="#dsm2dsmx" title="永久链接至标题">¶</a></h3>
+<p>DSM由Spektrum创建，其DMS2的主要功能是非常强大的抗噪声和抗干扰能力。这也是一个数字协议
+。但是，在与飞行控制器连接时，您需要确保它支持DSM。但是，大多数现代飞行控制器
+（例如Flip32 + 551）都 支持Spektrum</p>
+<p>DSMX是DSM2的新改进版，它提高了可靠性。</p>
+</div>
+<div class="section" id="crossfire">
+<h3>CROSSFIRE<a class="headerlink" href="#crossfire" title="永久链接至标题">¶</a></h3>
+<p>TBS CROSSFIRE是基于最新RF技术的远程R / C链路，能够自我修复双向通信，并且范围超出了
+理解范围。TBS CROSSFIRE具有-130dB的灵敏度，完整的RF侧辅助功能，用于FPV Quad的微
+型接收器，它包含最先进的技术，可提供出色的远程控制链路。</p>
+<p>但是，远程控制链接所承担的任务远远超出范围。延迟，遥测，抗干扰的鲁棒性，与智能设备的
+连接性，易用性和整体光洁度常常会牺牲最后的范围。Crossfire具有足够的射程，并利用此余
+量来实现其他功能和可靠性。FPV的光明前景就在眼前</p>
+</div>
+<div class="section" id="id3">
+<h3>共同点<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>都是异步串行通信</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>差异<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>协议传输格式不一样</p></li>
+<li><p>各个厂家外部射频电路和射频模模块的性能不一样</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="extern_module_updata.html" class="btn btn-neutral float-right" title="升级说明" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="extern_module_lib.html" class="btn btn-neutral" title="外部模块库" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, RanBiron.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
